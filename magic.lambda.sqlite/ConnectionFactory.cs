@@ -9,9 +9,9 @@ using magic.signals.contracts;
 namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [.db-factory.connection.pgsql] slot for creating a PostgreSQL connection and returning to caller.
+    /// [.db-factory.connection.sqlite] slot for creating a PostgreSQL connection and returning to caller.
     /// </summary>
-    [Slot(Name = ".db-factory.connection.pgsql")]
+    [Slot(Name = ".db-factory.connection.sqlite")]
     public class ConnectionFactory : ISlot
     {
         /// <summary>
