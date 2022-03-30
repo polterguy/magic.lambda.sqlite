@@ -1,0 +1,27 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: sonarscan-dotnet
+        uses: highbyte/sonarscan-dotnet@v2.1.2
+        with:
+          sonarProjectKey: polterguy_${{ github.event.repository.name }}
+          sonarProjectName:  ${{ github.event.repository.name }}
+          sonarOrganization: polterguy
+          dotnetBuildArguments: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj
+          dotnetTestArguments: ./${{ github.event.repository.name }}.tests/${{ github.event.repository.name }}.tests.csproj --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/*.trx"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
