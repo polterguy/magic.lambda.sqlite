@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.pgsql.helpers;
+using magic.lambda.sqlite.helpers;
 using magic.data.common.contracts;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [pgsql.connect] slot for connecting to a PostgreSQL server instance.
+    /// [sqlite.connect] slot for connecting to a PostgreSQL server instance.
     /// </summary>
-    [Slot(Name = "pgsql.connect")]
+    [Slot(Name = "sqlite.connect")]
     public class Connect : ISlot, ISlotAsync
     {
         readonly IDataSettings _settings;
@@ -35,15 +35,15 @@ namespace magic.lambda.pgsql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            using (var connection = new PgSqlConnectionWrapper(
+            using (var connection = new SqliteConnectionWrapper(
                 Executor.GetConnectionString(
                     input,
-                    "pgsql",
-                    "postgres",
+                    "sqlite",
+                    "sys",
                     _settings)))
             {
                 signaler.Scope(
-                    "pgsql.connect",
+                    "sqlite.connect",
                     connection,
                     () => signaler.Signal("eval", input));
                 input.Value = null;
@@ -58,15 +58,15 @@ namespace magic.lambda.pgsql
         /// <returns>An awaitable task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            using (var connection = new PgSqlConnectionWrapper(
+            using (var connection = new SqliteConnectionWrapper(
                 Executor.GetConnectionString(
                     input,
-                    "pgsql",
-                    "postgres",
+                    "sqlite",
+                    "sys",
                     _settings)))
             {
                 await signaler.ScopeAsync(
-                    "pgsql.connect",
+                    "sqlite.connect",
                     connection,
                     async () => await signaler.SignalAsync("eval", input));
                 input.Value = null;

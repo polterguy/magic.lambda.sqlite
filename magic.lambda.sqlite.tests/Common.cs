@@ -13,7 +13,7 @@ using magic.signals.services;
 using magic.signals.contracts;
 using magic.node.extensions.hyperlambda;
 
-namespace magic.lambda.pgsql.tests
+namespace magic.lambda.sqlite.tests
 {
     public static class Common
     {

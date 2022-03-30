@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>magic.lambda.pgsql</AssemblyName>
+    <AssemblyName>magic.lambda.sqlite</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

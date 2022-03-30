@@ -5,7 +5,7 @@
 using magic.node;
 using builder = magic.data.common.builders;
 
-namespace magic.lambda.pgsql.crud.builders
+namespace magic.lambda.sqlite.crud.builders
 {
     /// <summary>
     /// Specialised insert SQL builder, to create an insert MySQL SQL statement

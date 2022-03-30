@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>magic.lambda.pgsql.tests</AssemblyName>
+    <AssemblyName>magic.lambda.sqlite.tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,6 @@
     <ProjectReference Include="..\..\magic.data.common\magic.data.common\dev_magic.data.common.csproj" />
     <ProjectReference Include="..\..\magic.lambda\magic.lambda\dev_magic.lambda.csproj" />
     <ProjectReference Include="..\..\magic.signals\magic.signals.services\dev_magic.signals.services.csproj" />
-    <ProjectReference Include="..\magic.lambda.pgsql\dev_magic.lambda.pgsql.csproj" />
+    <ProjectReference Include="..\magic.lambda.sqlite\dev_magic.lambda.sqlite.csproj" />
   </ItemGroup>
 </Project>

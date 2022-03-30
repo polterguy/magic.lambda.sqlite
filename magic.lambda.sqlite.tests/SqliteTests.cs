@@ -5,14 +5,14 @@
 using System.Linq;
 using Xunit;
 
-namespace magic.lambda.pgsql.tests
+namespace magic.lambda.sqlite.tests
 {
-    public class PqSQLTests
+    public class SqliteTests
     {
         [Fact]
         public void SelectSQL_01()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable");
             Assert.Empty(lambda.Children.First().Children);
@@ -22,7 +22,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_02()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    columns
@@ -37,7 +37,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_03()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    where
@@ -55,7 +55,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_04()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    where
@@ -73,7 +73,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_05()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    where
@@ -99,7 +99,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_06()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    order:foo");
@@ -110,7 +110,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_07()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    order:foo
@@ -122,7 +122,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_08()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    order:foo
@@ -134,7 +134,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_09()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    where
@@ -149,7 +149,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_10()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    columns
@@ -163,7 +163,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_11()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    where
@@ -199,7 +199,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_12()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    columns
@@ -221,7 +221,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void SelectSQL_13()
         {
-            var lambda = Common.Evaluate(@"pgsql.read
+            var lambda = Common.Evaluate(@"sqlite.read
    generate:bool:true
    table:SomeTable
    columns
@@ -243,7 +243,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void DeleteSQL_01()
         {
-            var lambda = Common.Evaluate(@"pgsql.delete
+            var lambda = Common.Evaluate(@"sqlite.delete
    generate:bool:true
    table:SomeTable");
             Assert.Empty(lambda.Children.First().Children);
@@ -253,7 +253,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void DeleteSQL_02()
         {
-            var lambda = Common.Evaluate(@"pgsql.delete
+            var lambda = Common.Evaluate(@"sqlite.delete
    generate:bool:true
    table:SomeTable
    where
@@ -271,7 +271,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void InsertSQL_01()
         {
-            var lambda = Common.Evaluate(@"pgsql.create
+            var lambda = Common.Evaluate(@"sqlite.create
    generate:bool:true
    table:SomeTable
    values
@@ -288,7 +288,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void InsertSQL_02()
         {
-            var lambda = Common.Evaluate(@"pgsql.create
+            var lambda = Common.Evaluate(@"sqlite.create
    generate:bool:true
    table:SomeTable
    values
@@ -305,7 +305,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void InsertSQL_03()
         {
-            var lambda = Common.Evaluate(@"pgsql.create
+            var lambda = Common.Evaluate(@"sqlite.create
    generate:bool:true
    table:SomeTable
    return-id:false
@@ -323,7 +323,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void InsertSQL_04()
         {
-            var lambda = Common.Evaluate(@"pgsql.create
+            var lambda = Common.Evaluate(@"sqlite.create
    generate:bool:true
    table:SomeTable
    values
@@ -338,7 +338,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void UpdateSQL_01()
         {
-            var lambda = Common.Evaluate(@"pgsql.update
+            var lambda = Common.Evaluate(@"sqlite.update
    generate:bool:true
    table:SomeTable
    where
@@ -360,7 +360,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void UpdateSQL_02()
         {
-            var lambda = Common.Evaluate(@"pgsql.update
+            var lambda = Common.Evaluate(@"sqlite.update
    generate:bool:true
    table:SomeTable
    where
@@ -382,7 +382,7 @@ namespace magic.lambda.pgsql.tests
         [Fact]
         public void UpdateSQL_04()
         {
-            var lambda = Common.Evaluate(@"pgsql.update
+            var lambda = Common.Evaluate(@"sqlite.update
    generate:bool:true
    table:SomeTable
    where

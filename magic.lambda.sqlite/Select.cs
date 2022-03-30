@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.pgsql.helpers;
+using magic.lambda.sqlite.helpers;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [pgsql.select] slot for executing a select type of SQL command, that returns
+    /// [sqlite.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "pgsql.select")]
+    [Slot(Name = "sqlite.select")]
     public class Select : ISlot, ISlotAsync
     {
         /// <summary>
@@ -30,8 +30,8 @@ namespace magic.lambda.pgsql
             // Invoking execute helper.
             Executor.Execute(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 (cmd, max) =>
             {
                 using (var reader = cmd.ExecuteReader())
@@ -68,8 +68,8 @@ namespace magic.lambda.pgsql
             // Invoking execute helper.
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 async (cmd, max) =>
             {
                 using (var reader = await cmd.ExecuteReaderAsync())

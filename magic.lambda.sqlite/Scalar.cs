@@ -4,17 +4,16 @@
 
 using System.Threading.Tasks;
 using magic.node;
-using magic.data.common;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.pgsql.helpers;
+using magic.lambda.sqlite.helpers;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [pgsql.scalar] slot for executing a scalar type of SQL command.
+    /// [sqlite.scalar] slot for executing a scalar type of SQL command.
     /// </summary>
-    [Slot(Name = "pgsql.scalar")]
+    [Slot(Name = "sqlite.scalar")]
     public class Scalar : ISlot, ISlotAsync
     {
         /// <summary>
@@ -26,8 +25,8 @@ namespace magic.lambda.pgsql
         {
             Executor.Execute(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 (cmd, _) =>
             {
                 input.Value = Converter.GetValue(cmd.ExecuteScalar());
@@ -44,8 +43,8 @@ namespace magic.lambda.pgsql
         {
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 async (cmd, _) =>
             {
                 input.Value = await cmd.ExecuteScalarAsync();

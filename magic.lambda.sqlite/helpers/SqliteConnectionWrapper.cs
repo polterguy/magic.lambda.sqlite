@@ -3,23 +3,23 @@
  */
 
 using System;
-using Npgsql;
+using Microsoft.Data.Sqlite;
 
-namespace magic.lambda.pgsql.helpers
+namespace magic.lambda.sqlite.helpers
 {
     /*
      * Internal helper class to create a MySqlConnection lazy, such that it is not actuall created
      * before it's actually de-referenced.
      */
-    internal sealed class PgSqlConnectionWrapper : IDisposable
+    internal sealed class SqliteConnectionWrapper : IDisposable
     {
-        readonly Lazy<NpgsqlConnection> _connection;
+        readonly Lazy<SqliteConnection> _connection;
 
-        public PgSqlConnectionWrapper(string connectionString)
+        public SqliteConnectionWrapper(string connectionString)
         {
-            _connection = new Lazy<NpgsqlConnection>(() =>
+            _connection = new Lazy<SqliteConnection>(() =>
             {
-                var connection = new NpgsqlConnection(connectionString);
+                var connection = new SqliteConnection(connectionString);
                 connection.Open();
                 return connection;
             });
@@ -28,7 +28,7 @@ namespace magic.lambda.pgsql.helpers
         /*
          * Property to retrieve underlying PostgreSQL connection.
          */
-        public NpgsqlConnection Connection => _connection.Value;
+        public SqliteConnection Connection => _connection.Value;
 
         public void Dispose()
         {

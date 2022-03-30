@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
 using magic.signals.contracts;
-using magic.lambda.pgsql.helpers;
-using magic.lambda.pgsql.crud.builders;
+using magic.lambda.sqlite.helpers;
+using magic.lambda.sqlite.crud.builders;
 using help = magic.data.common.helpers;
 using build = magic.data.common.builders;
 
-namespace magic.lambda.pgsql.crud
+namespace magic.lambda.sqlite.crud
 {
     /// <summary>
-    /// The [pgsql.create] slot class
+    /// The [sqlite.create] slot class
     /// </summary>
-    [Slot(Name = "pgsql.create")]
+    [Slot(Name = "sqlite.create")]
     public class Create : ISlot, ISlotAsync
     {
         /// <summary>
@@ -50,8 +50,8 @@ namespace magic.lambda.pgsql.crud
             // Executing SQL, now parametrized.
             help.Executor.Execute(
                 exe,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<help.Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<help.Transaction>("sqlite.transaction"),
                 (cmd, _) =>
             {
                 /*
@@ -102,8 +102,8 @@ namespace magic.lambda.pgsql.crud
             // Executing SQL, now parametrized.
             await help.Executor.ExecuteAsync(
                 exe,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<help.Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<help.Transaction>("sqlite.transaction"),
                 async (cmd, _) =>
             {
                 /*

@@ -5,15 +5,15 @@
 using magic.node;
 using magic.signals.contracts;
 using System.Threading.Tasks;
-using magic.lambda.pgsql.helpers;
+using magic.lambda.sqlite.helpers;
 using hlp = magic.data.common.helpers;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [pgsql.transaction.create] slot for creating a new MySQL database transaction.
+    /// [sqlite.transaction.create] slot for creating a new MySQL database transaction.
     /// </summary>
-    [Slot(Name = "pgsql.transaction.create")]
+    [Slot(Name = "sqlite.transaction.create")]
     public class CreateTransaction : ISlot, ISlotAsync
     {
         /// <summary>
@@ -24,8 +24,8 @@ namespace magic.lambda.pgsql
         public void Signal(ISignaler signaler, Node input)
         {
             signaler.Scope(
-                "pgsql.transaction",
-                new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
+                "sqlite.transaction",
+                new hlp.Transaction(signaler, signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection),
                 () => signaler.Signal("eval", input));
         }
 
@@ -38,8 +38,8 @@ namespace magic.lambda.pgsql
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             await signaler.ScopeAsync(
-                "pgsql.transaction",
-                new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
+                "sqlite.transaction",
+                new hlp.Transaction(signaler, signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection),
                 async () => await signaler.SignalAsync("eval", input));
         }
     }

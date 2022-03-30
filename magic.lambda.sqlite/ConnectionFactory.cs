@@ -2,11 +2,11 @@
  * Magic Cloud, copyright Aista, Ltd. See the attached LICENSE file for details.
  */
 
-using Npgsql;
+using Microsoft.Data.Sqlite;
 using magic.node;
 using magic.signals.contracts;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
     /// [.db-factory.connection.pgsql] slot for creating a PostgreSQL connection and returning to caller.
@@ -21,7 +21,7 @@ namespace magic.lambda.pgsql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            input.Value = new NpgsqlConnection();
+            input.Value = new SqliteConnection();
         }
     }
 }

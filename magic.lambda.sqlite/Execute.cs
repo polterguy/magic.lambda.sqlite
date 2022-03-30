@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.pgsql.helpers;
+using magic.lambda.sqlite.helpers;
 
-namespace magic.lambda.pgsql
+namespace magic.lambda.sqlite
 {
     /// <summary>
-    /// [pgsql.execute] slot for executing a non query SQL command.
+    /// [sqlite.execute] slot for executing a non query SQL command.
     /// </summary>
-    [Slot(Name = "pgsql.execute")]
+    [Slot(Name = "sqlite.execute")]
     public class Execute : ISlot, ISlotAsync
     {
         /// <summary>
@@ -25,8 +25,8 @@ namespace magic.lambda.pgsql
         {
             Executor.Execute(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 (cmd, _) =>
             {
                 input.Value = cmd.ExecuteNonQuery();
@@ -43,8 +43,8 @@ namespace magic.lambda.pgsql
         {
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
-                signaler.Peek<Transaction>("pgsql.transaction"),
+                signaler.Peek<SqliteConnectionWrapper>("sqlite.connect").Connection,
+                signaler.Peek<Transaction>("sqlite.transaction"),
                 async (cmd, _) =>
             {
                 input.Value = await cmd.ExecuteNonQueryAsync();
