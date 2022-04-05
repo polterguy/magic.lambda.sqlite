@@ -10,7 +10,7 @@
     <Description>PostgreSQL helper slots for Magic allowing you to easily connect to a PostgreSQL database, and read, update, delete and insert into your database. To use package go to https://polterguy.github.io</Description>
     <PackageProjectUrl>https://github.com/polterguy/magic.lambda.sqlite</PackageProjectUrl>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>11.0.5</PackageVersion>
+    <PackageVersion>13.0.0</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/polterguy/magic.lambda.sqlite.git</RepositoryUrl>
@@ -47,7 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.3" />
-    <PackageReference Include="magic.data.common" Version="11.0.5" />
+    <PackageReference Include="magic.data.common" Version="13.0.0" />
   </ItemGroup>
 
 </Project>
