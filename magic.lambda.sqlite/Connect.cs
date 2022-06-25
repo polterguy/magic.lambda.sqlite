@@ -22,7 +22,7 @@ namespace magic.lambda.sqlite
         /// <summary>
         /// Creates a new instance of your class.
         /// </summary>
-        /// <param name="configuration">Configuration for your application.</param>
+        /// <param name="settings">Configuration settings for your application.</param>
         public Connect(IDataSettings settings)
         {
             _settings = settings;

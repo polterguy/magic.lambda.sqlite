@@ -2,7 +2,7 @@
  * Magic Cloud, copyright Aista, Ltd. See the attached LICENSE file for details.
  */
 
-using Microsoft.Data.Sqlite;
+using Aista.Data.Sqlite;
 using magic.node;
 using magic.signals.contracts;
 
