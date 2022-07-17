@@ -18,8 +18,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="magic.lambda" Version="14.0.5" />
-    <PackageReference Include="magic.signals" Version="14.0.5" />
+    <PackageReference Include="magic.lambda" Version="14.0.8" />
+    <PackageReference Include="magic.signals" Version="14.0.8" />
     <PackageReference Include="Moq" Version="4.16.1" />
   </ItemGroup>
 
